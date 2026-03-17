@@ -151,30 +151,6 @@
     animation: wavePulse 3s ease-in-out infinite alternate;
   }
 
-
-
-  /* ── STATS ── */
-  #stats {
-    display: grid; grid-template-columns: repeat(4,1fr);
-    background: var(--navy-mid);
-    border-bottom: 1px solid rgba(168,197,160,.08);
-  }
-  .stat-card {
-    padding: 48px 24px;
-    border-right: 1px solid rgba(168,197,160,.08);
-    text-align: center;
-  }
-  .stat-value {
-    font-size: clamp(32px,4vw,52px);
-    font-weight: 500; color: var(--gold-warm);
-    font-style: italic; margin-bottom: 10px;
-  }
-  .stat-label {
-    font-size: 12px; color: rgba(232,226,217,.5);
-    font-family: 'DM Sans', sans-serif;
-    line-height: 1.55; letter-spacing: .04em;
-  }
-
   /* ── GENERIC SECTION WRAPPER ── */
   .section {
     padding: 100px 6vw;
@@ -244,8 +220,9 @@
     font-family: 'DM Sans', sans-serif; font-weight: 600; margin-bottom: 14px;
   }
   .rhythm-card h3 {
-    font-size: 20px; font-weight: 400; font-style: italic;
+    font-size: 20px; font-weight: 500;
     color: var(--cream); margin-bottom: 12px;
+    font-family: 'DM Sans', sans-serif;
   }
   .rhythm-card p {
     font-size: 13px; line-height: 1.75; color: rgba(232,226,217,.55);
@@ -472,12 +449,27 @@
   .nomono-feat { font-size:12px; color:rgba(232,226,217,.6); font-family:'DM Sans',sans-serif; display:flex; gap:10px; align-items:flex-start; }
   .nomono-feat span { color:var(--green); flex-shrink:0; }
 
+  /* ── EMBED ── */
+  #embed { background: var(--navy-mid); padding: 100px 6vw; }
+  .embed-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .embed-title { font-size: clamp(28px,3.5vw,48px); font-weight: 400; line-height: 1.12; color: var(--cream); margin-bottom: 22px; }
+  .embed-title em { font-style: italic; color: var(--gold-warm); }
+  .embed-body { font-size: 14px; line-height: 1.85; color: rgba(232,226,217,.62); font-family: 'DM Sans', sans-serif; font-weight: 300; margin-bottom: 16px; }
+  .embed-card { background: var(--navy-card); border: 1px solid rgba(168,197,160,.15); border-radius: 10px; padding: 32px; }
+  .embed-channel { display: flex; align-items: center; gap: 16px; padding: 6px 0; }
+  .embed-channel-icon { font-size: 22px; width: 42px; height: 42px; background: rgba(168,197,160,.08); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .embed-channel-name { font-size: 14px; font-weight: 600; color: var(--cream); font-family: 'DM Sans', sans-serif; margin-bottom: 3px; }
+  .embed-channel-sub { font-size: 12px; color: rgba(232,226,217,.45); font-family: 'DM Sans', sans-serif; }
+  .embed-benefit { margin-left: auto; font-size: 9px; letter-spacing: .14em; color: var(--green); font-family: 'DM Sans', sans-serif; font-weight: 700; border: 1px solid rgba(168,197,160,.2); padding: 3px 9px; white-space: nowrap; flex-shrink: 0; }
+  .embed-divider { height: 1px; background: rgba(168,197,160,.08); margin: 16px 0; }
+  .embed-insight { font-size: 13px; color: rgba(232,226,217,.6); font-family: 'DM Sans', sans-serif; line-height: 1.7; display: flex; gap: 12px; align-items: flex-start; margin-top: 6px; }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     #stats { grid-template-columns: repeat(2,1fr); }
     .why-grid { grid-template-columns: 1fr; }
     .llm-inner { grid-template-columns: 1fr; gap: 48px; }
-    .nomono-inner { grid-template-columns: 1fr; gap: 48px; }
+    .embed-inner { grid-template-columns: 1fr; gap: 48px; }
 
     .rhythm-grid { grid-template-columns: 1fr; }
     .pkg-grid { grid-template-columns: 1fr; }
@@ -562,35 +554,13 @@
       Your monthly report,<br>
       <span class="block2">turned into a conversation.</span>
     </h1>
-    <p class="hero-sub">A structured 15-minute Q&A podcast released with every monthly report. Transcripts ready for LinkedIn, your website, and AI search — so your narrative reaches investors wherever they are.</p>
+    <p class="hero-sub">A structured 15-minute Q&amp;A podcast released with every monthly report. Transcripts ready for LinkedIn, your website, and AI search — so your narrative reaches investors wherever they are.</p>
     <div class="hero-ctas">
       <button class="btn-green" onclick="openCalendly()">Book a Demo</button>
       <a href="https://shows.acast.com/meriti-podden" target="_blank" rel="noopener" class="btn-ghost">Hear a Sample Episode ↗</a>
     </div>
   </div>
   <div class="wave-row" id="waveRow"></div>
-</section>
-
-
-
-<!-- ══ STATS ══ -->
-<section id="stats">
-  <div class="stat-card fade-up">
-    <div class="stat-value">68%</div>
-    <div class="stat-label">of retail investors prefer audio updates over PDF reports</div>
-  </div>
-  <div class="stat-card fade-up d1">
-    <div class="stat-value">12×</div>
-    <div class="stat-label">more touchpoints per year vs quarterly-only communication</div>
-  </div>
-  <div class="stat-card fade-up d2">
-    <div class="stat-value">4×</div>
-    <div class="stat-label">more content output per single recording session</div>
-  </div>
-  <div class="stat-card fade-up d3">
-    <div class="stat-value">15min</div>
-    <div class="stat-label">per episode — minimal demand on your portfolio manager</div>
-  </div>
 </section>
 
 <!-- ══ WHY ══ -->
@@ -601,7 +571,7 @@
     <div class="why-card fade-up">
       <div class="why-icon">◎</div>
       <h3>One Session, Full Content Suite</h3>
-      <p>A single 15-minute recording yields a polished podcast episode, a verbatim transcript, a LinkedIn newsletter, a web article, and show notes — all distributed to every major platform in 48 hours.</p>
+      <p>A single 15-minute recording yields a polished podcast episode, a verbatim transcript, a LinkedIn newsletter, a web article, and show notes — hosted on Acast as your own branded show and distributed to major platforms.</p>
     </div>
     <div class="why-card fade-up d1">
       <div class="why-icon">◇</div>
@@ -611,7 +581,7 @@
     <div class="why-card fade-up d2">
       <div class="why-icon">◈</div>
       <h3>LLM &amp; AI Search Visibility</h3>
-      <p>When advisers or investors ask ChatGPT or Perplexity about your fund's performance or outlook, structured Q&A transcripts are exactly what AI models cite. Your commentary becomes a permanent, searchable record.</p>
+      <p>When advisers or investors ask ChatGPT or Perplexity about your fund's performance or outlook, structured Q&amp;A transcripts are exactly what AI models cite. Your commentary becomes a permanent, searchable record.</p>
     </div>
     <div class="why-card fade-up d3">
       <div class="why-icon">◉</div>
@@ -629,15 +599,53 @@
     <div class="rhythm-grid">
       <div class="rhythm-card fade-up">
         <h3>Monthly Report Published</h3>
-        <p>Your standard monthly factsheet and commentary go out as usual. We receive the report and prepare a structured Q&A briefing for your portfolio manager.</p>
+        <p>Your standard monthly factsheet and commentary go out as usual. We receive the report and prepare a structured Q&amp;A briefing for your portfolio manager.</p>
       </div>
       <div class="rhythm-card fade-up d1">
-        <h3>15-Minute Q&A Recorded</h3>
+        <h3>15-Minute Q&amp;A Recorded</h3>
         <p>Our host guides your PM through key performance drivers, positioning changes, and outlook — in plain language investors actually want to hear. Edited and produced within 48 hours.</p>
       </div>
       <div class="rhythm-card fade-up d2">
         <h3>Published Everywhere</h3>
-        <p>Episode goes live on Spotify, Apple Podcasts, and Google. Transcript becomes a LinkedIn newsletter, a web article, and an AI-indexed content asset — all within the same week.</p>
+        <p>The episode is hosted on Acast as the company's own branded podcast show and distributed onto major platforms such as Spotify and Apple Podcasts. Transcript becomes a LinkedIn newsletter, a web article, and an AI-indexed content asset — all within the same week.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ EMBED ══ -->
+<section id="embed">
+  <div class="embed-inner fade-up">
+    <div class="embed-left">
+      <div class="section-label">EMBED & SEARCHABILITY</div>
+      <h2 class="embed-title">Your podcast,<br><em>embedded everywhere</em><br>it matters.</h2>
+      <p class="embed-body">Every episode can be embedded directly on your website and inside your LinkedIn newsletter articles — turning passive content into a persistent, interactive audio layer that lives where your investors already read.</p>
+      <p class="embed-body">Embedded players are fully crawlable. Combined with the episode transcript published on the same page, this creates a rich, structured content signal that large language models and search engines index with high priority — far more effectively than a standalone PDF or press release ever could.</p>
+    </div>
+    <div class="embed-right">
+      <div class="embed-card">
+        <div class="embed-channel">
+          <div class="embed-channel-icon">🌐</div>
+          <div>
+            <div class="embed-channel-name">Your website</div>
+            <div class="embed-channel-sub">Embedded Acast player + transcript on the same page</div>
+          </div>
+          <div class="embed-benefit">AI crawlable</div>
+        </div>
+        <div class="embed-divider"></div>
+        <div class="embed-channel">
+          <div class="embed-channel-icon">💼</div>
+          <div>
+            <div class="embed-channel-name">LinkedIn Newsletter</div>
+            <div class="embed-channel-sub">Audio player embedded inside your investor article</div>
+          </div>
+          <div class="embed-benefit">High reach</div>
+        </div>
+        <div class="embed-divider"></div>
+        <div class="embed-insight">
+          <span style="color:var(--green);">✦</span>
+          Pages with embedded audio + transcript are cited by LLMs at significantly higher rates than text-only content — giving your fund narrative a compounding presence in AI-assisted research.
+        </div>
       </div>
     </div>
   </div>
@@ -649,9 +657,9 @@
     <div class="fade-left">
       <div class="section-label">AI SEARCH ADVANTAGE</div>
       <h2 class="llm-title">When an adviser asks AI<br><em>about your fund's outlook —</em><br><span>will your words appear?</span></h2>
-      <p class="llm-body">AI assistants and large language models are rapidly replacing the first step of fund research. Structured Q&A transcripts — where a named portfolio manager answers direct questions — are the exact format LLMs prefer to cite. Your monthly podcast becomes a permanent AI-readable record.</p>
+      <p class="llm-body">AI assistants and large language models are rapidly replacing the first step of fund research. Structured Q&amp;A transcripts — where a named portfolio manager answers direct questions — are the exact format LLMs prefer to cite. Your monthly podcast becomes a permanent AI-readable record.</p>
       <ul class="llm-list">
-        <li><span>✦</span> Q&A mirrors how LLMs structure answers</li>
+        <li><span>✦</span> Q&amp;A mirrors how LLMs structure answers</li>
         <li><span>✦</span> Named attribution increases citation probability</li>
         <li><span>✦</span> Timestamped transcripts signal freshness to crawlers</li>
         <li><span>✦</span> Outperforms static PDFs in AI retrieval benchmarks</li>
@@ -719,7 +727,7 @@
           <div class="nomono-features">
             <div class="nomono-feat"><span style="color:var(--green);">✦</span> Nomono: portable studio-grade audio on location</div>
             <div class="nomono-feat"><span style="color:var(--green);">✦</span> Nomono: no studio needed — works anywhere</div>
-            <div class="nomono-feat"><span style="color:rgba(232,226,217,.35);">◇</span> <span style="color:rgba(232,226,217,.45);">Web: AI enhancement partly compensates for ambient noise</span></div>
+            <div class="nomono-feat"><span style="color:rgba(232,226,217,.35);">◇</span> <span style="color:rgba(232,226,217,.45);">Web: AI enhancement partly compensates for ambient&nbsp;noise</span></div>
             <div class="nomono-feat"><span style="color:rgba(232,226,217,.35);">◇</span> <span style="color:rgba(232,226,217,.45);">Web: not recommended for best end result</span></div>
           </div>
         </div>
@@ -742,12 +750,12 @@
         <div class="pkg-sessions" style="color:rgba(232,226,217,.45);">6 episodes / 6 months</div>
         <div class="pkg-price" style="border-bottom:1px solid rgba(232,226,217,.08);">Contact for pricing</div>
         <ul class="pkg-features">
-          <li style="color:rgba(232,226,217,.65);"><span style="color:#888;">✓</span> 15-min Q&A per month</li>
+          <li style="color:rgba(232,226,217,.65);"><span style="color:#888;">✓</span> 15-min Q&amp;A per month</li>
           <li style="color:rgba(232,226,217,.65);"><span style="color:#888;">✓</span> Full transcript delivered</li>
           <li style="color:rgba(232,226,217,.65);"><span style="color:#888;">✓</span> 1 LinkedIn article per episode</li>
           <li style="color:rgba(232,226,217,.65);"><span style="color:#888;">✓</span> SEO-optimised web post</li>
-          <li style="color:rgba(232,226,217,.65);"><span style="color:#888;">✓</span> LLM-optimised Q&A format</li>
-          <li style="color:rgba(232,226,217,.65);"><span style="color:#888;">✓</span> Multi-platform distribution</li>
+          <li style="color:rgba(232,226,217,.65);"><span style="color:#888;">✓</span> LLM-optimised Q&amp;A format</li>
+          <li style="color:rgba(232,226,217,.65);"><span style="color:#888;">✓</span> Hosted on Acast · Spotify · Apple Podcasts</li>
         </ul>
         <button onclick="openModal('Starter')" class="pkg-cta" style="border-color:#C9B882;color:#C9B882;background:transparent;">Get Started</button>
       </div>
@@ -760,12 +768,12 @@
         <div class="pkg-sessions" style="color:rgba(232,226,217,.45);">12 episodes / year</div>
         <div class="pkg-price" style="border-bottom:1px solid rgba(168,197,160,.15);">Contact for pricing</div>
         <ul class="pkg-features">
-          <li style="color:rgba(232,226,217,.75);"><span style="color:#A8C5A0;">✓</span> 15-min Q&A every month</li>
+          <li style="color:rgba(232,226,217,.75);"><span style="color:#A8C5A0;">✓</span> 15-min Q&amp;A every month</li>
           <li style="color:rgba(232,226,217,.75);"><span style="color:#A8C5A0;">✓</span> Full transcripts + show notes</li>
           <li style="color:rgba(232,226,217,.75);"><span style="color:#A8C5A0;">✓</span> LinkedIn newsletter article</li>
           <li style="color:rgba(232,226,217,.75);"><span style="color:#A8C5A0;">✓</span> Web post + SEO optimisation</li>
           <li style="color:rgba(232,226,217,.75);"><span style="color:#A8C5A0;">✓</span> LLM &amp; AI search optimisation</li>
-          <li style="color:rgba(232,226,217,.75);"><span style="color:#A8C5A0;">✓</span> Multi-platform distribution</li>
+          <li style="color:rgba(232,226,217,.75);"><span style="color:#A8C5A0;">✓</span> Hosted on Acast · Spotify · Apple Podcasts</li>
           <li style="color:rgba(232,226,217,.75);"><span style="color:#A8C5A0;">✓</span> Annual content performance report</li>
           <li style="color:rgba(232,226,217,.75);"><span style="color:#A8C5A0;">✓</span> Priority 48h turnaround</li>
         </ul>
