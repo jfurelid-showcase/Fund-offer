@@ -30,8 +30,12 @@
   }
 
   @keyframes wavePulse {
-    0%   { opacity: .12; transform: scaleY(.4); }
-    100% { opacity: .5;  transform: scaleY(1); }
+    0%   { opacity: .15; transform: scaleY(.35); }
+    100% { opacity: .55; transform: scaleY(1); }
+  }
+  @-webkit-keyframes wavePulse {
+    0%   { opacity: .15; -webkit-transform: scaleY(.35); }
+    100% { opacity: .55; -webkit-transform: scaleY(1); }
   }
   @keyframes heroIn {
     from { opacity: 0; transform: translateY(28px); }
@@ -148,7 +152,11 @@
   .wave-bar {
     flex: 1; background: rgba(168,197,160,.18);
     border-radius: 2px 2px 0 0;
+    transform-origin: bottom center;
+    -webkit-transform-origin: bottom center;
     animation: wavePulse 3s ease-in-out infinite alternate;
+    -webkit-animation: wavePulse 3s ease-in-out infinite alternate;
+    will-change: transform, opacity;
   }
 
   /* ── GENERIC SECTION WRAPPER ── */
@@ -420,11 +428,15 @@
     border-radius: 10px; padding: 36px; overflow: hidden;
   }
   .nomono-waveform {
-    display: flex; align-items: center; gap: 2px; height: 56px; margin-bottom: 28px;
+    display: flex; align-items: flex-end; gap: 2px; height: 56px; margin-bottom: 28px;
   }
   .nomono-waveform .wb {
     flex: 1; border-radius: 2px;
+    transform-origin: bottom center;
+    -webkit-transform-origin: bottom center;
     animation: wavePulse 2.4s ease-in-out infinite alternate;
+    -webkit-animation: wavePulse 2.4s ease-in-out infinite alternate;
+    will-change: transform, opacity;
   }
   .nomono-labels {}
   .nomono-label-row { display:flex; gap:12px; margin-bottom:10px; }
@@ -889,10 +901,13 @@ document.addEventListener('DOMContentLoaded', function() {
     for (var j = 0; j < 48; j++) {
       var b = document.createElement('div');
       b.className = 'wb';
-      var bh = 10 + Math.sin(j * .55) * 18 + Math.cos(j * .22) * 10;
+      var bh = Math.max(8, 10 + Math.sin(j * .55) * 18 + Math.cos(j * .22) * 10);
       b.style.height = bh + 'px';
-      b.style.background = 'rgba(168,197,160,' + (0.15 + Math.abs(Math.sin(j*.4)) * 0.35) + ')';
-      b.style.animationDelay = (j * .04) + 's';
+      b.style.minHeight = '6px';
+      b.style.background = 'rgba(168,197,160,' + (0.15 + Math.abs(Math.sin(j * .4)) * 0.35) + ')';
+      var delay = (j * .04) + 's';
+      b.style.animationDelay = delay;
+      b.style.webkitAnimationDelay = delay;
       nWave.appendChild(b);
     }
   }
