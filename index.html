@@ -204,40 +204,85 @@
     font-family: 'DM Sans', sans-serif; font-weight: 300;
   }
 
-  /* ── MONTHLY RHYTHM ── */
+  /* ── TIMELINE RHYTHM ── */
   #rhythm { background: var(--navy-mid); padding: 100px 6vw; }
-  .rhythm-inner { max-width: 1200px; margin: 0 auto; }
-  .rhythm-grid {
-    display: grid; grid-template-columns: repeat(2,1fr); gap: 2px;
-    margin-top: 60px;
+  .rhythm-inner { max-width: 800px; margin: 0 auto; }
+
+  .timeline {
+    position: relative; margin-top: 60px;
+    padding-left: 48px;
   }
-  .rhythm-card {
-    background: var(--navy-card); padding: 40px 32px;
-    border-top: 1px solid rgba(168,197,160,.1);
-    position: relative; overflow: hidden;
+  /* vertical line */
+  .timeline::before {
+    content: '';
+    position: absolute; left: 11px; top: 8px;
+    width: 2px;
+    height: calc(100% - 16px);
+    background: linear-gradient(to bottom, var(--green), rgba(168,197,160,0));
   }
-  .rhythm-card::after {
-    content: attr(data-week);
-    position: absolute; top: 16px; right: 20px;
-    font-size: 11px; letter-spacing: .18em;
-    color: rgba(168,197,160,.25);
-    font-family: 'DM Sans', sans-serif; font-weight: 600;
+
+  .tl-item {
+    position: relative; margin-bottom: 56px;
+    opacity: 0; transform: translateX(-24px);
+    transition: opacity .6s ease, transform .6s ease;
   }
-  .rhythm-week {
-    font-size: 11px; letter-spacing: .2em; color: var(--green);
-    font-family: 'DM Sans', sans-serif; font-weight: 600; margin-bottom: 14px;
+  .tl-item.visible { opacity: 1; transform: none; }
+  .tl-item:last-child { margin-bottom: 0; }
+
+  /* dot on the line */
+  .tl-dot {
+    position: absolute; left: -44px; top: 4px;
+    width: 24px; height: 24px; border-radius: 50%;
+    background: var(--navy-mid);
+    border: 2px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    transition: background .4s ease, box-shadow .4s ease;
   }
-  .rhythm-card h3 {
-    font-size: 20px; font-weight: 500;
-    color: var(--cream); margin-bottom: 12px;
-    font-family: 'DM Sans', sans-serif;
+  .tl-item.visible .tl-dot {
+    background: var(--green);
+    box-shadow: 0 0 0 6px rgba(168,197,160,.12);
   }
-  .rhythm-card p {
-    font-size: 13px; line-height: 1.75; color: rgba(232,226,217,.55);
+  .tl-dot-inner {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--navy-mid);
+    transition: background .4s ease;
+  }
+  .tl-item.visible .tl-dot-inner { background: var(--navy-mid); }
+
+  /* connector line animates in */
+  .tl-item:not(:last-child)::after {
+    content: '';
+    position: absolute; left: -33px; top: 28px;
+    width: 2px; height: 0;
+    background: rgba(168,197,160,.2);
+    transition: height .6s ease .3s;
+  }
+  .tl-item.visible:not(:last-child)::after { height: calc(100% + 28px); }
+
+  .tl-step {
+    font-size: 10px; letter-spacing: .2em; color: var(--green);
+    font-family: 'DM Sans', sans-serif; font-weight: 700; margin-bottom: 8px;
+  }
+  .tl-title {
+    font-size: 20px; font-weight: 500; color: var(--cream);
+    font-family: 'DM Sans', sans-serif; margin-bottom: 10px;
+  }
+  .tl-body {
+    font-size: 14px; line-height: 1.78; color: rgba(232,226,217,.55);
     font-family: 'DM Sans', sans-serif; font-weight: 300;
   }
-  .rhythm-arrow {
-    display: none;
+  .tl-tag {
+    display: inline-block; margin-top: 12px;
+    font-size: 10px; letter-spacing: .14em;
+    color: rgba(168,197,160,.7); font-family: 'DM Sans', sans-serif;
+    font-weight: 600; border: 1px solid rgba(168,197,160,.2);
+    padding: 3px 10px; border-radius: 2px;
+  }
+
+  @media (max-width: 560px) {
+    .timeline { padding-left: 36px; }
+    .tl-dot { left: -34px; }
+    .tl-item:not(:last-child)::after { left: -23px; }
   }
 
   /* ── LLM ── */
@@ -483,7 +528,6 @@
     .llm-inner { grid-template-columns: 1fr; gap: 48px; }
     .embed-inner { grid-template-columns: 1fr; gap: 48px; }
     .nomono-inner { grid-template-columns: 1fr; gap: 48px; }
-    .rhythm-grid { grid-template-columns: 1fr; }
     .pkg-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
@@ -616,19 +660,32 @@
   <div class="rhythm-inner">
     <div class="section-label">THE MONTHLY CYCLE</div>
     <h2 class="section-title">Built around<br><em>your reporting calendar.</em></h2>
-    <div class="rhythm-grid">
-      <div class="rhythm-card fade-up">
-        <h3>Monthly Report Published</h3>
-        <p>Your standard monthly factsheet and commentary go out as usual. We receive the report and prepare a structured Q&amp;A briefing for your portfolio manager.</p>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-step">STEP 01</div>
+        <div class="tl-title">Monthly Report Published</div>
+        <p class="tl-body">Your standard monthly factsheet and commentary go out as usual. We receive the report and prepare a structured Q&amp;A briefing for your portfolio manager.</p>
+        <span class="tl-tag">REPORT DAY</span>
       </div>
-      <div class="rhythm-card fade-up d1">
-        <h3>15-Minute Q&amp;A Recorded</h3>
-        <p>Our host guides your PM through key performance drivers, positioning changes, and outlook — in plain language investors actually want to hear. Edited and produced within 48 hours.</p>
+
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-step">STEP 02</div>
+        <div class="tl-title">15-Minute Q&amp;A Recorded</div>
+        <p class="tl-body">Our host guides your PM through key performance drivers, positioning changes, and outlook — in plain language investors actually want to hear. Edited and produced within 48 hours.</p>
+        <span class="tl-tag">WITHIN THE WEEK</span>
       </div>
-      <div class="rhythm-card fade-up d2">
-        <h3>Published Everywhere</h3>
-        <p>The episode is hosted on Acast as the company's own branded podcast show and distributed onto major platforms such as Spotify and Apple Podcasts. Transcript becomes a LinkedIn newsletter, a web article, and an AI-indexed content asset — all within the same week.</p>
+
+      <div class="tl-item">
+        <div class="tl-dot"><div class="tl-dot-inner"></div></div>
+        <div class="tl-step">STEP 03</div>
+        <div class="tl-title">Published Everywhere</div>
+        <p class="tl-body">The episode is hosted on Acast as the company's own branded podcast show and distributed onto major platforms such as Spotify and Apple Podcasts. Transcript becomes a LinkedIn newsletter, a web article, and an AI-indexed content asset — all within the same week.</p>
+        <span class="tl-tag">48H TURNAROUND</span>
       </div>
+
     </div>
   </div>
 </section>
@@ -929,7 +986,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (e.isIntersecting) e.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up, .fade-left, .fade-right, .scale-in').forEach(function(el) {
+  document.querySelectorAll('.fade-up, .fade-left, .fade-right, .scale-in, .tl-item').forEach(function(el) {
     observer.observe(el);
   });
 
