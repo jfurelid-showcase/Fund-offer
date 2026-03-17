@@ -154,8 +154,8 @@
     border-radius: 2px 2px 0 0;
     transform-origin: bottom center;
     -webkit-transform-origin: bottom center;
-    animation: wavePulse 3s ease-in-out infinite alternate;
-    -webkit-animation: wavePulse 3s ease-in-out infinite alternate;
+    animation: wavePulse 3s ease-in-out infinite alternate both;
+    -webkit-animation: wavePulse 3s ease-in-out infinite alternate both;
     will-change: transform, opacity;
   }
 
@@ -882,19 +882,31 @@ function openCalendly() {
   return false;
 }
 
-// ── Wave bars ──
-document.addEventListener('DOMContentLoaded', function() {
-  var waveRow = document.getElementById('waveRow');
-  if (waveRow) {
-    for (var i = 0; i < 64; i++) {
-      var bar = document.createElement('div');
-      bar.className = 'wave-bar';
-      var h = 20 + Math.sin(i * .6) * 16 + Math.cos(i * .25) * 9;
-      bar.style.height = h + 'px';
-      bar.style.animationDelay = (i * .05) + 's';
-      waveRow.appendChild(bar);
+// ── Wave bars — created immediately so animation starts on page load ──
+(function() {
+  function buildWave() {
+    var waveRow = document.getElementById('waveRow');
+    if (waveRow) {
+      for (var i = 0; i < 64; i++) {
+        var bar = document.createElement('div');
+        bar.className = 'wave-bar';
+        var h = 20 + Math.sin(i * .6) * 16 + Math.cos(i * .25) * 9;
+        bar.style.height = h + 'px';
+        var delay = (i * .05) + 's';
+        bar.style.animationDelay = delay;
+        bar.style.webkitAnimationDelay = delay;
+        waveRow.appendChild(bar);
+      }
     }
   }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildWave);
+  } else {
+    buildWave();
+  }
+})();
+
+document.addEventListener('DOMContentLoaded', function() {
 
   var nWave = document.getElementById('nomono-wave');
   if (nWave) {
